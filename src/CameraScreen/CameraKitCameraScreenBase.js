@@ -290,7 +290,7 @@ export default class CameraScreenBase extends Component {
   }
 
   async onCaptureImagePressed() {
-    const shouldSaveToCameraRoll = !this.props.allowCaptureRetake;
+    const shouldSaveToCameraRoll = Platform.OS === 'android' ? false : !this.props.allowCaptureRetake; //ps. Quick fix for https://github.com/wix/react-native-camera-kit/issues/127
     const image = await this.camera.capture(shouldSaveToCameraRoll);
 
     if (this.props.allowCaptureRetake) {
